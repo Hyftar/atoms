@@ -47,18 +47,20 @@ push `[3,4]` then push `[4,5]`
 The interpreter is by default in base 10. Any commands will be added as a multiple of 10.
 to change to other base simply use their modifier :
 ```
-b1001,d23,h1Ah,o77
+b1001,d23,h1Ah,077
 ```
-will push `[0b1001,23,0x1A,0o77]`
+will push `[0b1001,23,0x1A,077]`
+notes : a leading zero will automatically modifie the base to octal
+
 ### string base
 The interpreter can also write in string base with `""` enclosing as seen higher
 
 ### float base
-
+the interpreter can write floating point in float base
 
 ## Simple Math
 
-### operator
+### Flatten operator
 ```
 + - addition
 - - subtraction
@@ -92,4 +94,25 @@ push `[3&5,4&5]`
 3,4 4,5++; push [12,13] -> [3+(4+5),4+(4+5)]
 3,2,1#; push [321]
 3,4 1,1+-; push [1,2]
+1,2,3 0#+; push [60]
 ```
+### none flatten operator
+```
+% - modulus
+^ - exponentiation
+```
+1. if the first vector of the stack is a non single value
+```
+3,4%
+```
+push `[3%4]`
+2. when the vector has 3+ elements
+```
+3,4,5%
+```
+push `[3%4,3%5]`
+3. if the vector is only one var it will pop the second to do the operation
+```
+3,4 5%
+```
+push `[3%5,4%5]`
