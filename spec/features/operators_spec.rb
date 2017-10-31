@@ -38,5 +38,51 @@ describe 'Tests the operators' do
       @interpreter.read('8,5-')
       expect(@interpreter.top).to eq(3)
     end
+
+    describe 'The multiplication operator' do
+      it 'multiplies 5 by 8' do
+        @interpreter.read('5 8*')
+        expect(@interpreter.top).to eq(40)
+      end
+
+      it 'multiplies 5 by 1, 4, 8 and 9' do
+        @interpreter.read('1,4,8,9 5*')
+        expect(@interpreter.last_vector).to eq([5, 20, 40, 45])
+      end
+
+      it 'multiplies 5 by 8 using one vector' do
+        @interpreter.read('5,8*')
+        expect(@interpreter.top).to eq(40)
+      end
+    end
+
+    describe 'The "and" operator' do
+      it '2 and 1' do
+        @interpreter.read('1 2&')
+        expect(@interpreter.top).to eq(0)
+      end
+
+      it '1 and [0, 2, 17, 6]' do
+        @interpreter.read('0,2,17,6 1&')
+        expect(@interpreter.last_vector).to eq([0, 0, 1, 0])
+      end
+    end
+
+    describe 'The "or" operator' do
+      it '4 or 1' do
+        @interpreter.read('4 1|')
+        expect(@interpreter.top).to eq(5)
+      end
+
+      it '2 or 2' do
+        @interpreter.read('2 2|')
+        expect(@interpreter.top).to eq(2)
+      end
+
+      it '1 or [2, 100, 50, 30]' do
+        @interpreter.read('2,100,50,30 1|')
+        expect(@interpreter.last_vector).to eq([3, 101, 51, 31])
+      end
+    end
   end
 end
