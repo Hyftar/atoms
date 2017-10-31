@@ -87,6 +87,7 @@ module Atoms
 
   def atom_array
     last_vector << 0
+    @current_exponent = 0
     @mode = :normal
   end
 
