@@ -52,6 +52,16 @@ class Interpreter
       atom_bin
     when 'ƒ' # Latin Small Letter F With Hook
       atom_float
+    when '-'
+      atom_subtract
+    when '+'
+      atom_add
+    when '/'
+      atom_divide
+    when '|'
+      atom_or
+    when '&'
+      atom_and
     when '*'
       atom_multiplication
     when ','

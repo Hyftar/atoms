@@ -45,15 +45,17 @@ module Atoms
     @stack.pop
   end
 
-  def atom_multiplication
-    @stack << 0 if last_vector.empty?
+  def atom_operator(operator)
+    @stack << [0] if last_vector.empty?
     first_vector = @stack.pop
     if first_vector.size > 1
-      @stack << first_vector.reduce(:*)
+      @stack << [first_vector.reduce(operator)]
     else
       raise ArgumentError, 'Only 1 argument found, requires 2' if @stack.empty?
       second_vector = @stack.pop
-      @stack << second_vector.map { |element| element * first_vector.first }
+      @stack << second_vector.map do |element|
+        element.send(operator, first_vector.first)
+      end
     end
   end
 
@@ -61,6 +63,26 @@ module Atoms
     @stack << [] unless last_vector.empty?
     @current_exponent = 0
     @mode = :normal
+  end
+
+  def atom_multiplication
+    atom_operator(:*)
+  end
+
+  def atom_add
+    atom_operator(:+)
+  end
+
+  def atom_subtract
+    atom_operator(:-)
+  end
+
+  def atom_and
+    atom_operator(:&)
+  end
+
+  def atom_or
+    atom_operator(:|)
   end
 
   def atom_array
