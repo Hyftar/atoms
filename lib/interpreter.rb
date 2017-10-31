@@ -15,6 +15,10 @@ class Interpreter
     @mode = MODES.first
   end
 
+  def top
+    last_vector.first
+  end
+
   # Returns the last item (vector) on the stack
   def last_vector
     @stack.last
