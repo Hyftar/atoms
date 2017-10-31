@@ -116,3 +116,25 @@ push `[3%4,3%5]`
 3,4 5%
 ```
 push `[3%5,4%5]`
+
+## Generator
+
+Atoms lets you create some special vector with simple commands
+
+### NumberGenerator
+the `r` operator returns a random number between 0 and 1
+```
+r,r,r -> [0.9865,0.8274,0.4567]
+```
+the `d` operator push a vector of all the digit
+```
+d -> [0,1,2,3,4,5,6,7,8,9]
+```
+the `ƥ` (latin small letter p with hook) push the n first prime number where n is the first number in the first vector in the stack. if no number is found it returns the first 100
+```
+4ƥ -> [2,3,5,7]
+```
+the `ƒ` (latin small letter f with hook) push the n first fibonacci number where n is the first number in the first vector in the stack. if no number is found it returns the first 100
+```
+ƒ -> [0,1,1,...,]
+```
