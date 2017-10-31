@@ -27,10 +27,10 @@ module Atoms
       case @mode
       when :normal
         last_element *= 16
-        last_element += digit
+        last_element += digit.to_i(16)
       when :float
         @current_exponent -= 1
-        last_element += digit * 16**@current_exponent
+        last_element += digit.to_i(16) * 16**@current_exponent
       end
       last_vector[-1] = last_element
     end
