@@ -84,5 +84,39 @@ describe 'Tests the operators' do
         expect(@interpreter.last_vector).to eq([3, 101, 51, 31])
       end
     end
+
+    describe 'The division operator' do
+      it '100 / 25' do
+        @interpreter.read('100 25/')
+        expect(@interpreter.top).to eq(4)
+      end
+
+      it '12 / [36, 48, 60, 24]' do
+        @interpreter.read('36,48,60,24 12/')
+        expect(@interpreter.last_vector).to eq([3, 4, 5, 2])
+      end
+
+      it '100 / 2 / 5' do
+        @interpreter.read('100,2,5/')
+        expect(@interpreter.top).to eq(10)
+      end
+    end
+
+    describe 'The modulo operator' do
+      it '102 % 25' do
+        @interpreter.read('102 25%')
+        expect(@interpreter.top).to eq(2)
+      end
+
+      it '12 % [35, 54, 60, 21]' do
+        @interpreter.read('35,54,60,21 12%')
+        expect(@interpreter.last_vector).to eq([11, 6, 0, 9])
+      end
+
+      it '98 % 50 % 15' do
+        @interpreter.read('98,50,15%')
+        expect(@interpreter.top).to eq(3)
+      end
+    end
   end
 end
