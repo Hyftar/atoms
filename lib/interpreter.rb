@@ -62,6 +62,8 @@ class Interpreter
       atom_add
     when '/'
       atom_divide
+    when '%'
+      atom_modulo
     when '|'
       atom_or
     when '&'

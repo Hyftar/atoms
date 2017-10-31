@@ -85,6 +85,14 @@ module Atoms
     atom_operator(:|)
   end
 
+  def atom_modulo
+    atom_operator(:%)
+  end
+
+  def atom_divide
+    atom_operator(:/)
+  end
+
   def atom_array
     last_vector << 0
     @current_exponent = 0
