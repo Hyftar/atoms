@@ -44,8 +44,8 @@ class Interpreter
 
   def read_character_normal_mode(char)
     case char
-    when '0'..'9', 'a'..'f'
-      send(:"atom_#{char}")
+    when '0'..'9', 'a'..'f', 'A'..'F'
+      send(:"atom_#{char.downcase}")
     when /\s/
       atom_whitespace
     when '"'
