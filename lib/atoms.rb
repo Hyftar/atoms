@@ -98,4 +98,12 @@ module Atoms
   def atom_float
     @mode = :float
   end
+
+  def atom_bin
+    @base = 2
+  end
+
+  def atom_hex
+    @base = 16
+  end
 end
