@@ -33,4 +33,32 @@ describe 'Tests data entry' do
       expect(@interpreter.stack.size).to eq(1)
     end
   end
+
+  describe 'The random atom' do
+    it 'should add a random digit to the current number' do
+      @interpreter.read('10r')
+      expect(@interpreter.top).to be_within(5).of(105)
+    end
+  end
+
+  describe 'The lower case atom' do
+    it 'should add all the lower case letters to the last vector' do
+      @interpreter.read('5,3l')
+      expect(@interpreter.last_vector).to eq([5, 3] + ('a'..'z').to_a)
+    end
+  end
+
+  describe 'The upper case atom' do
+    it 'should add all the upper case letters to the last vector' do
+      @interpreter.read('5,3L')
+      expect(@interpreter.last_vector).to eq([5, 3] + ('A'..'Z').to_a)
+    end
+  end
+
+  describe 'The numeric atom' do
+    it 'should add all the numbers to the last vector' do
+      @interpreter.read('5,3n')
+      expect(@interpreter.last_vector).to eq([5, 3] + (0..9).to_a)
+    end
+  end
 end
