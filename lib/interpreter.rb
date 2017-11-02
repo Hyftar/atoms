@@ -76,6 +76,14 @@ class Interpreter
       atom_pop
     when 'P'
       atom_prime
+    when 'r'
+      atom_random
+    when 'n'
+      atom_numeric
+    when 'l'
+      atom_lower_case_letters
+    when 'L'
+      atom_upper_case_letters
     else
       raise SyntaxError, 'Unrecognized token'
     end

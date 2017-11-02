@@ -46,7 +46,7 @@ module Atoms
   end
 
   def atom_operator(operator)
-    @stack << [0] if last_vector.empty?
+    @stack[-1] << 0 if last_vector.empty?
     first_vector = @stack.pop
     if first_vector.size > 1
       @stack << [first_vector.reduce(operator)]
@@ -57,6 +57,22 @@ module Atoms
         element.send(operator, first_vector.first)
       end
     end
+  end
+
+  def atom_random
+    send(:"atom_#{rand(10)}")
+  end
+
+  def atom_numeric
+    (0..9).each { |digit| @stack[-1] << digit }
+  end
+
+  def atom_lower_case_letters
+    ('a'..'z').each { |chr| @stack[-1] << chr }
+  end
+
+  def atom_upper_case_letters
+    ('A'..'Z').each { |chr| @stack[-1] << chr }
   end
 
   def atom_whitespace
