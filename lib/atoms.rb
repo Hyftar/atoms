@@ -75,6 +75,10 @@ module Atoms
     ('A'..'Z').each { |chr| @stack[-1] << chr }
   end
 
+  def atom_prime_generator
+    Prime.first(@stack.pop.last || 100).each { |digit| @stack[-1] << digit }
+  end
+
   def atom_whitespace
     @stack << [] unless last_vector.empty?
     @current_exponent = 0
