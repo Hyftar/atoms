@@ -60,7 +60,7 @@ module Atoms
   end
 
   def atom_random
-    send(:"atom_#{rand(10)}")
+    send(:"atom_#{rand(@base).to_s(@base)}")
   end
 
   def atom_numeric
