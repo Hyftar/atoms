@@ -48,6 +48,8 @@ class Interpreter
       send(:"atom_#{char.downcase}")
     when /\s/
       atom_whitespace
+    when '#'
+      atom_concat
     when '"'
       atom_string
     when 'h'

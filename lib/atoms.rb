@@ -85,6 +85,20 @@ module Atoms
     @mode = :normal
   end
 
+  def atom_concat
+    vector = @stack.pop
+    raise TypeError if vector.map(&:class).uniq.size > 1
+    case vector.first
+    when String
+      @stack << vector.reduce(:+)
+    when Numeric
+      @stack << vector.reduce(0) do |acumulator, element|
+        acumulator *= @base
+        acumulator + element
+      end
+    end
+  end
+
   def atom_multiplication
     atom_operator(:*)
   end
